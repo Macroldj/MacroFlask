@@ -1,4 +1,3 @@
-# 基于 centos7.6+python3.6
 FROM macroldj/python3.6:1912
 
 WORKDIR workspace
