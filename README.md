@@ -3,12 +3,15 @@
 
 ### 已实现
 - [x] Flask api blueprint 设计
-- [x] 路由设计
-- [x] 基本的用户jwt认证
 
 ### 计划中
 - [ ] cache 缓存设计  
-
+- [ ] 路由设计
+- [ ] 数据库设计
+- [ ] 缓存设计
+- [ ] 业务处理
+- [ ] 单元测试
+- [ ] 基本的用户jwt认证
 ### Refence
 - [Flask Restful Api](https://flask-restful.readthedocs.io/en/latest/)
 - [flask docs](https://flask.palletsprojects.com/en/1.1.x/)
