@@ -1,13 +1,3 @@
-click
 Flask
-Flask-JWT
-Flask-RESTful
-Flask-SQLAlchemy
-PyJWT
-python-dateutil
-pytz
-six
-SQLAlchemy
-Werkzeug
-PyYAML
 redis
+gunicorn
