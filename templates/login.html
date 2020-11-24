@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+
+        <div class="wrap">
+            <h1>登录页面</h1>
+            <form action="" method="post">
+                <div class="input-group">
+                    <i class="icon-user fa fa-user"></i>
+                    <input type="text" name="username" class="form-control" placeholder="请输入用户名">
+                </div>
+                <div class="input-group">
+                    <i class="icon-user fa fa-lock"></i>
+                    <input type="password" name="pass" class="form-control" placeholder="请输入密码">
+                    {% if error %}
+                    {{ error }}
+                    {% else %}
+                    {% endif %}
+                </div>
+                <div class="input-group btn-group">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
