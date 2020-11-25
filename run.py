@@ -7,7 +7,7 @@ from config import config
 from controllers import users, books
 
 # from config import config
-app = Flask(__name__,static_folder='statics',static_url_path='/statics')
+app = Flask(__name__,static_folder='statics', static_url_path='/statics')
 basedir = os.path.abspath(os.path.dirname(__file__))
 db = SQLAlchemy(app)
 
