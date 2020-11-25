@@ -31,7 +31,7 @@ REDIS_URL = "{}://:{}@{}:{}/{}".format(CACHE_TYPE, CACHE_REDIS_PASS, REDIS_HOST,
 
 # MESSAGE QUEUE CONFIG for rabbitMQ
 MQ_HOST = "49.234.134.105"
-MQ_PORT = 5432
+MQ_PORT = 5672
 
 # logging config
 dictConfig({
