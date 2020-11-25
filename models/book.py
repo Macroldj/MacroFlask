@@ -1,6 +1,5 @@
 from . import db
 
-
 class Book(db.Model):
     __bind_key__ = 'bookId'
     __tablename__ = 'book'

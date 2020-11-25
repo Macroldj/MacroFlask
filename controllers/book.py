@@ -1,17 +1,18 @@
 import redis
 
-# from controllers import books
-#
-#
-# @books.route("/lidejin")
-# def lidejin():
-#     resp = ""
-#     try:
-#         resp = cache.RedisCache.get("lidejin")
-#     except Exception as e:
-#         print(e)
-#     if resp:
-#         return resp
-#     else:
-#         cache.set("lidejin","lidejin")
-#         return "lidejin"
+from controllers import books
+from ulits import myCache
+
+
+@books.route("/lidejin")
+def lidejin():
+    resp = ""
+    try:
+        resp = myCache.get("lidejin")
+    except Exception as e:
+        print(e)
+    if resp:
+        return resp
+    else:
+        myCache.set("lidejin","lidejin")
+        return "lidejin"

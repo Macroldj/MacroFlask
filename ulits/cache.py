@@ -1,8 +1,7 @@
-from . import redisPool
 from redis import Redis
 
 
-class RedisCache():
-    def __init__(self):
-        def get():
-            pass
+class RedisCache(Redis):
+    def __init__(self, connection_pool):
+        super().__init__()
+        self.connection_pool = connection_pool
