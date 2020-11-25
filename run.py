@@ -8,6 +8,7 @@ from controllers import users, books
 
 # from config import config
 app = Flask(__name__,static_folder='statics', static_url_path='/statics')
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 basedir = os.path.abspath(os.path.dirname(__file__))
 db = SQLAlchemy(app)
 
