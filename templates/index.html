@@ -11,9 +11,9 @@
 
 <h3>首页</h3>
 {% if username != None %}
-    <p>{{ username }}:欢迎您<a href="{{ url_for('logout') }}">注销</a></p>
+    <p>{{ username }}:欢迎您<a href="{{ url_for('users.logout') }}">注销</a></p>
 {% else %}
-    <a href="{{ url_for('login') }}">登录</a>
+    <a href="{{ url_for('users.login') }}">登录</a>
 {% endif %}
 
 

@@ -1,53 +1,19 @@
-from datetime import datetime, timedelta
+import os
 
-from flask import Flask, escape, url_for, request, render_template, Response, make_response
-from werkzeug.utils import redirect
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+from config import config
+from controllers import users, books
 
+# from config import config
+app = Flask(__name__,static_folder='statics')
+basedir = os.path.abspath(os.path.dirname(__file__))
+db = SQLAlchemy(app)
 
-@app.route('/')
-def index():
-    username = request.cookies.get('username','')
-    if username:
-        return render_template('index.html', username=username)
-    else:
-        return render_template('index.html', username=None)
-
-
-@app.route('/logout')
-def logout():
-    response = redirect(url_for('index'))
-    response.delete_cookie('username')
-    return response
-
-
-def show_login_form(error):
-    return render_template("login.html",error = error)
-
-
-def valid_login(username,password):
-    if username == "lidejin" and password == "lidejin":
-        return True
-    else:
-        return False
-
-
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form["username"], request.form["pass"]):
-            resp = make_response(render_template('index.html', username = request.form["username"]))
-            expires = datetime.now() + timedelta(days=13, hours=16)
-            resp.set_cookie('username',request.form['username'],expires=expires)
-            return resp
-        else:
-            error = '密码问题'
-            return render_template("login.html", error = error)
-    else:
-        return render_template("login.html", error=error)
-
+# url register into app
+app.register_blueprint(users, url_prefix='/users')
+app.register_blueprint(books, url_prefix='/books')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000,debug = True)
+    app.run(host='0.0.0.0', port=config.SERVER_PORT, debug = config.DEBUG)
