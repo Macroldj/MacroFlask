@@ -1,4 +1,4 @@
 flask
 redis
 flask_sqlalchemy
-flask_caching
+flask_cachingpython -m pip install --upgrade pip  -i https://pypi.tuna.tsinghua.edu.cn/simple some-package

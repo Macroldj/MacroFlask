@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from flask import Flask, escape, url_for, request, render_template, Response
+from flask import Flask, escape, url_for, request, render_template, Response, make_response
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
@@ -9,13 +9,15 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     username = request.cookies.get('username','')
-    print(username)
-    return render_template('index.html', username=username)
+    if username:
+        return render_template('index.html', username=username)
+    else:
+        return render_template('index.html', username=None)
 
 
 @app.route('/logout')
 def logout():
-    response = redirect(url_for('login'))
+    response = redirect(url_for('index'))
     response.delete_cookie('username')
     return response
 
@@ -36,11 +38,10 @@ def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form["username"], request.form["pass"]):
-            res = Response('cookies的设置')
+            resp = make_response(render_template('index.html', username = request.form["username"]))
             expires = datetime.now() + timedelta(days=13, hours=16)
-            res.set_cookie('username')
-            print(res)
-            return redirect(url_for('index'))
+            resp.set_cookie('username',request.form['username'],expires=expires)
+            return resp
         else:
             error = '密码问题'
             return render_template("login.html", error = error)
