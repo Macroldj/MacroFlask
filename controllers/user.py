@@ -4,14 +4,31 @@ from flask import render_template, request, url_for, make_response, session
 from werkzeug.utils import redirect, escape
 
 from controllers import users
+from models.user import User
+from models import db
+
+
+@users.route("/add")
+def addUser():
+    if request.method == 'POST':
+        username = request.form["username"]
+        password = request.form["password"]
+        email = request.form["email"]
+        user = User.query.filter_by(username=username).first()
+        print("lidejin")
+        if user:
+            return render_template("adduser.html",error = "用户已存在")
+
+        else:
+            add_user = User(username=username, password=password, email=email)
+            db.session.add(add_user)
+            db.session.commit()
+    else:
+        return render_template("adduser.html",error = None)
 
 
 @users.route('/index')
 def index():
-    # if 'username' in session:
-    #     return render_template('index.html', username=session['username'])
-    # return render_template('index.html', username=None)
-    #
     username = request.cookies.get('username','')
     if username:
         return render_template('index.html', username=username)
@@ -33,8 +50,12 @@ def show_login_form(error):
 
 
 def valid_login(username,password):
-    if username == "lidejin" and password == "lidejin":
-        return True
+    user = User.query.filter_by(username=username).first()
+    if user:
+        if user.password == password:
+            return True
+        else:
+            return False
     else:
         return False
 

@@ -10,18 +10,13 @@
         <div class="wrap">
             <h1>登录页面</h1>
             <form action="" method="post">
-                <div class="input-group">
-                    <i class="icon-user fa fa-user"></i>
                     <input type="text" name="username" class="form-control" placeholder="请输入用户名">
-                </div>
-                <div class="input-group">
-                    <i class="icon-user fa fa-lock"></i>
-                    <input type="password" name="pass" class="form-control" placeholder="请输入密码">
+                    <input type="text" name="email" class="form-control" placeholder="请输入邮箱">
+                    <input type="password" name="password" class="form-control" placeholder="请输入密码">
                     {% if error %}
                     {{ error }}
                     {% else %}
                     {% endif %}
-                </div>
                 <div class="input-group btn-group">
                     <input type="submit">
                 </div>

@@ -1,6 +1,5 @@
-import redis
-
 from controllers import books
+from models.book import Book
 from ulits import myCache
 
 
