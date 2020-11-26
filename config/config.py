@@ -13,8 +13,8 @@ DB_PORT = '3306'
 DATABASE = 'test'
 USERNAME = 'root'
 PASSWORD = 'root'
-SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME, PASSWORD, HOSTNAME, DB_PORT,
-                                                                               DATABASE)
+SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME, PASSWORD, HOSTNAME, DB_PORT, DATABASE)
+# SQLALCHEMY_DATABASE_URI = "sqlite:////test.db"
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_POOL_SIZE = 10

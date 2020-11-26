@@ -3,7 +3,7 @@
 - [x] codeStruct
 - [x] configure file design
 - [x] cookie and session
-- [ ] database integration
+- [x] database integration
 - [ ] cache integration
 - [ ] message queue integration
 - [ ] user permission interface
