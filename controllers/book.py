@@ -3,15 +3,15 @@ from models.book import Book
 from ulits import myCache
 
 
-@books.route("/lidejin")
-def lidejin():
+@books.route("/test")
+def test():
     resp = ""
     try:
-        resp = myCache.get("lidejin")
+        resp = myCache.get("test")
     except Exception as e:
         print(e)
     if resp:
         return resp
     else:
-        myCache.set("lidejin","lidejin")
-        return "lidejin"
+        myCache.set("test", "test")
+        return "test"

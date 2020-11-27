@@ -8,28 +8,27 @@ from models.user import User
 from models import db
 
 
-@users.route("/add")
+@users.route("/add", methods=['GET', 'POST'])
 def addUser():
     if request.method == 'POST':
         username = request.form["username"]
         password = request.form["password"]
         email = request.form["email"]
         user = User.query.filter_by(username=username).first()
-        print("lidejin")
         if user:
-            return render_template("adduser.html",error = "用户已存在")
-
+            return render_template("adduser.html", error="用户已存在")
         else:
-            add_user = User(username=username, password=password, email=email)
+            add_user = User(username=username, email=email, password=password)
             db.session.add(add_user)
             db.session.commit()
+            return render_template("adduser.html", error="用户已添加")
     else:
-        return render_template("adduser.html",error = None)
+        return render_template("adduser.html", error=None)
 
 
 @users.route('/index')
 def index():
-    username = request.cookies.get('username','')
+    username = request.cookies.get('username', '')
     if username:
         return render_template('index.html', username=username)
     else:
@@ -46,10 +45,10 @@ def logout():
 
 
 def show_login_form(error):
-    return render_template("login.html",error = error)
+    return render_template("login.html", error=error)
 
 
-def valid_login(username,password):
+def valid_login(username, password):
     user = User.query.filter_by(username=username).first()
     if user:
         if user.password == password:
@@ -76,12 +75,12 @@ def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form["username"], request.form["pass"]):
-            resp = make_response(render_template('index.html', username = request.form["username"]))
+            resp = make_response(render_template('index.html', username=request.form["username"]))
             expires = datetime.now() + timedelta(days=13, hours=16)
-            resp.set_cookie('username',request.form['username'],expires=expires)
+            resp.set_cookie('username', request.form['username'], expires=expires)
             return resp
         else:
             error = '密码问题'
-            return render_template("login.html", error = error)
+            return render_template("login.html", error=error)
     else:
         return render_template("login.html", error=error)
