@@ -7,3 +7,4 @@
 - [ ] cache integration
 - [ ] message queue integration
 - [ ] user permission interface
+- [ ] Third party authentication

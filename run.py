@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'da
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = config.SQLALCHEMY_TRACK_MODIFICATIONS
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
-# url register into app
+# router register into application
 app.register_blueprint(users, url_prefix='/users')
 app.register_blueprint(books, url_prefix='/books')
 db.app = app
